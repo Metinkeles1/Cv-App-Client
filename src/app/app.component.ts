@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-declare var $: any;
 
 @Component({
   selector: 'app-root',
@@ -10,4 +9,3 @@ export class AppComponent {
   title = 'CvManagement';
 }
 
-$(document).ready(()=>alert("aksdf"));
