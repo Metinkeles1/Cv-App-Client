@@ -11,10 +11,7 @@ export class AppComponent {
   title = 'CvManagement';
 
   constructor(private toastrService: CustomToastrService){
-    toastrService.message("Merhaba","metin", {
-      messageType: ToastrMessageType.Success,
-      position: ToastrPosition.TopCenter
-    });
+
   }
 
 }
