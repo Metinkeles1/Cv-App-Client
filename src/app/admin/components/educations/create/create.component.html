@@ -1,0 +1,22 @@
+<mat-form-field appearance="fill" class="education-create">
+  <mat-label>Title</mat-label>
+  <input matInput #txtTitle/>
+</mat-form-field>
+<mat-form-field appearance="fill" class="education-create">
+  <mat-label>SubTitle</mat-label>
+  <input matInput #txtSubTitle />
+</mat-form-field>
+<mat-form-field appearance="fill" class="education-create">
+  <mat-label>SubTitle2</mat-label>
+  <input matInput #txtSubTitle2 />
+</mat-form-field>
+<mat-form-field appearance="fill" class="education-create">
+  <mat-label>GPA</mat-label>
+  <input matInput type="number" min="0" max="4" value="0" #txtGpa />
+</mat-form-field>
+<mat-form-field appearance="fill" class="education-create">
+  <mat-label>Date</mat-label>
+  <input matInput #txtDate />
+</mat-form-field>
+
+<button mat-raised-button class="product-btn" color="primary" (click)="create(txtTitle, txtSubTitle, txtSubTitle2, txtGpa, txtDate)">Create Education</button>

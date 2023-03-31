@@ -1,4 +1,4 @@
-export class Education {
+export class Create_Education {
   Title: string;
   SubTitle: string;
   SubTitle2: string;

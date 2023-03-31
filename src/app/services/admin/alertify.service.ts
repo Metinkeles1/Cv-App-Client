@@ -9,24 +9,25 @@ export class AlertifyService {
   constructor() { }
 
   // message(message: string, messageType: MessageType,position: Position, delay: Number = 3,dismissOthers:boolean=false)
-  message(message: string, options:Partial<AlertifyOptions>){
-    alertify.set('notifier','delay', options.delay);
-    alertify.set('notifier','position', options.position);
+  message(message: string, options: Partial<AlertifyOptions>) {
+    alertify.set('notifier', 'delay', options.delay);
+    alertify.set('notifier', 'position', options.position);
     const msj = alertify[options.messageType](message);
-    if(options.dismissOthers)
+    if (options.dismissOthers)
       msj.dismissOthers();
+
   }
 
-  dismiss(){
+  dismiss() {
     alertify.dismissAll();
   }
 }
 
-export class AlertifyOptions{
-  messageType:MessageType = MessageType.Message;
-  position:Position = Position.BottomLeft;
-  delay:Number = 3;
-  dismissOthers:boolean = false;
+export class AlertifyOptions {
+  messageType: MessageType = MessageType.Message;
+  position: Position = Position.BottomLeft;
+  delay: number = 3;
+  dismissOthers: boolean = false;
 }
 
 export enum MessageType {
@@ -34,13 +35,13 @@ export enum MessageType {
   Message = "message",
   Notify = "notify",
   Success = "success",
-  Warning="warning"
+  Warning = "warning"
 }
 
-export enum Position{
+export enum Position {
+  TopCenter = "top-center",
   TopRight = "top-right",
   TopLeft = "top-left",
-  TopCenter = "top-center",
   BottomRight = "bottom-right",
   BottomCenter = "bottom-center",
   BottomLeft = "bottom-left"

@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.education-create{
+  margin: 5px 5px 5px ;
+}
+
+.product-btn{
+  margin: 5px 5px 5px;
+}
