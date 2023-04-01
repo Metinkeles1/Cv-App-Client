@@ -32,6 +32,12 @@ export class CreateComponent extends BaseComponent {
         messageType: MessageType.Success,
         position: Position.TopRight
       })
+    }, errorMessage => {
+      this.alertify.message(errorMessage, {
+        dismissOthers: true,
+        messageType: MessageType.Error,
+        position: Position.TopRight
+      })
     });
   }
 }
