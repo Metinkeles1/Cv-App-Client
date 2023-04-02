@@ -1,6 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 import { Create_Education } from 'src/app/contracts/create_education';
+import { list_education } from 'src/app/contracts/list_education';
 import { HttpClientService } from '../http-client.service';
 
 @Injectable({
@@ -34,5 +36,16 @@ export class EducationService {
       });
   }
 
+  async read(page: number = 0, size: number = 5, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<{ totalCount: number; educations: list_education[] }> {
+    const promiseData: Promise<{ totalCount: number; educations: list_education[] }> = firstValueFrom(this.httpClientService.get<{ totalCount: number; educations: list_education[] }>({
+      controller: "educations",
+      queryString: `page=${page}&size=${size}`
+    }));
+
+    promiseData.then(d => successCallBack())
+      .catch((errorResponse: HttpErrorResponse) => errorCallBack(errorResponse.message))
+
+    return await promiseData;
+  }
 
 }

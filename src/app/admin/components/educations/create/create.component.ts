@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { Create_Education } from 'src/app/contracts/create_education';
@@ -16,6 +16,8 @@ export class CreateComponent extends BaseComponent {
     super(spiner);
   }
 
+  @Output() createdEducation: EventEmitter<Create_Education> = new EventEmitter();
+
   create(Title: HTMLInputElement, SubTitle: HTMLInputElement, subTitle2: HTMLInputElement, Gpa: HTMLInputElement, Date: HTMLInputElement) {
     this.showSpinner(SpinnerType.BallAtom);
     const create_education: Create_Education = new Create_Education();
@@ -31,7 +33,8 @@ export class CreateComponent extends BaseComponent {
         dismissOthers: true,
         messageType: MessageType.Success,
         position: Position.TopRight
-      })
+      });
+      this.createdEducation.emit(create_education)
     }, errorMessage => {
       this.alertify.message(errorMessage, {
         dismissOthers: true,
