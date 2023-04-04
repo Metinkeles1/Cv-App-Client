@@ -7,18 +7,18 @@ export class BaseComponent {
   constructor(private spinner: NgxSpinnerService) {
   }
 
-  showSpinner(spinnerNameType: SpinnerType){
+  showSpinner(spinnerNameType: SpinnerType) {
     this.spinner.show(spinnerNameType);
 
-    setTimeout(() => this.hideSpinner(spinnerNameType),1000);
+    // setTimeout(() => this.hideSpinner(spinnerNameType),1000);
   }
 
-  hideSpinner(spinnerNameType: SpinnerType){
+  hideSpinner(spinnerNameType: SpinnerType) {
     this.spinner.hide(spinnerNameType);
   }
 }
 
-export enum SpinnerType{
+export enum SpinnerType {
   BallAtom = "s1",
   BallScaleMultiple = "s2",
   BallSpinClockWiseFadeRotating = "s3"

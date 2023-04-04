@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientModule } from '@angular/common/http';
+import { DeleteDirective } from './directives/admin/delete.directive';
 
 
 
@@ -20,13 +21,13 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AdminModule,UiModule, BrowserAnimationsModule,
+    AdminModule, UiModule, BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule,
     HttpClientModule
   ],
   providers: [
-    {provide:"baseUrl", useValue:"https://localhost:7008/api", multi:true}
+    { provide: "baseUrl", useValue: "https://localhost:7008/api", multi: true }
   ],
   bootstrap: [AppComponent]
 })
