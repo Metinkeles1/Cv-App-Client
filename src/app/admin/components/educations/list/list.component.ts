@@ -7,6 +7,7 @@ import { list_education } from 'src/app/contracts/list_education';
 import { AlertifyService, MessageType, Position } from 'src/app/services/admin/alertify.service';
 import { EducationService } from 'src/app/services/common/models/education.service';
 
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -17,7 +18,7 @@ export class ListComponent extends BaseComponent implements OnInit {
     super(spinner)
   }
 
-  displayedColumns: string[] = ['Title', 'Subtitle', 'Subtitle2', 'GPA', 'Date', 'CreatedDate', 'UpdatedDate'];
+  displayedColumns: string[] = ['Title', 'Subtitle', 'Subtitle2', 'GPA', 'Date', 'CreatedDate', 'UpdatedDate', 'Edit', 'Delete'];
   dataSource: MatTableDataSource<list_education> = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -28,10 +29,13 @@ export class ListComponent extends BaseComponent implements OnInit {
       messageType: MessageType.Error,
       position: Position.TopRight
     }))
-    debugger;
     this.dataSource = new MatTableDataSource<list_education>(allEducations.educations);
     this.paginator.length = allEducations.totalCount;
   }
+  // delete(id, event) {
+  //   const img: HTMLImageElement = event.srcElement;
+  //   { img.parentElement.parentElement };
+  // }
 
   async pageChanged() {
     await this.getEducations();
@@ -40,4 +44,6 @@ export class ListComponent extends BaseComponent implements OnInit {
   async ngOnInit() {
     await this.getEducations();
   }
+
+
 }

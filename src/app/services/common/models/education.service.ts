@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { Create_Education } from 'src/app/contracts/create_education';
 import { list_education } from 'src/app/contracts/list_education';
 import { HttpClientService } from '../http-client.service';
@@ -12,7 +12,7 @@ export class EducationService {
 
   constructor(private httpClientService: HttpClientService) { }
 
-  create(education: Create_Education, successCallBack?: any, errorCallBack?: (errorMessage: string) => void) {
+  create(education: Create_Education, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void) {
     this.httpClientService.post({
       controller: "educations"
     }, education)
@@ -46,6 +46,14 @@ export class EducationService {
       .catch((errorResponse: HttpErrorResponse) => errorCallBack(errorResponse.message))
 
     return await promiseData;
+  }
+
+  async delete(id: string) {
+    const deleteObservable: Observable<any> = this.httpClientService.Delete<any>({
+      controller: "educations",
+    }, id);
+
+    await firstValueFrom(deleteObservable);
   }
 
 }
