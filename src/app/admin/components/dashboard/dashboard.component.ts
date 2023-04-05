@@ -9,7 +9,7 @@ import { AlertifyService, MessageType, Position } from 'src/app/services/admin/a
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent extends BaseComponent {
-  constructor(private alertify: AlertifyService,spinner: NgxSpinnerService){
+  constructor(private alertify: AlertifyService, spinner: NgxSpinnerService) {
     super(spinner)
   }
 

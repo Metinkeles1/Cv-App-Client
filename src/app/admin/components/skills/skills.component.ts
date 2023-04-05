@@ -13,7 +13,7 @@ export class SkillsComponent extends BaseComponent {
     super(spinner)
   }
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.showSpinner(SpinnerType.BallSpinClockWiseFadeRotating);
   }
 }
