@@ -18,13 +18,13 @@ export class ListComponent extends BaseComponent implements OnInit {
     super(spinner)
   }
 
-  displayedColumns: string[] = ['Title', 'Subtitle', 'Subtitle2', 'GPA', 'Date', 'CreatedDate', 'UpdatedDate', 'Edit', 'Delete'];
+  displayedColumns: string[] = ['Title', 'Subtitle', 'Subtitle2', 'GPA', 'Date', 'Edit', 'Delete'];
   dataSource: MatTableDataSource<list_education> = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   async getEducations() {
     this.showSpinner(SpinnerType.BallAtom);
-    const allEducations: { totalCount: number; educations: list_education[] } = await this.educationService.read(this.paginator ? this.paginator.pageIndex : 0, this.paginator ? this.paginator.pageSize : 5, () => this.hideSpinner(SpinnerType.BallAtom), errorMessage => this.alertifyService.message(errorMessage, {
+    const allEducations: { totalCount: number; educations: list_education[] } = await this.educationService.read(this.paginator ? this.paginator.pageIndex : 0, this.paginator ? this.paginator.pageSize : 8, () => this.hideSpinner(SpinnerType.BallAtom), errorMessage => this.alertifyService.message(errorMessage, {
       dismissOthers: true,
       messageType: MessageType.Error,
       position: Position.TopRight
