@@ -14,6 +14,7 @@ import { DeleteDirective } from 'src/app/directives/admin/delete.directive';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
 import { FileUploadModule } from 'src/app/services/common/file-upload/file-upload.module';
+import { DialogModule } from 'src/app/dialogs/dialog.module';
 
 @NgModule({
   declarations: [
@@ -21,21 +22,16 @@ import { FileUploadModule } from 'src/app/services/common/file-upload/file-uploa
     CreateComponent,
     ListComponent,
     DeleteDirective,
-    DeleteDialogComponent
+    // DeleteDialogComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild([
       { path: '', component: EducationsComponent }
     ]),
-    MatSidenavModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatDialogModule,
-    FileUploadModule
+    MatSidenavModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule, MatPaginatorModule,
+    DialogModule,
+    FileUploadModule,
   ]
 })
 export class EducationsModule { }
