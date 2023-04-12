@@ -2,6 +2,8 @@ import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NgxFileDropEntry } from 'ngx-file-drop';
+import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
+import { SpinnerType } from 'src/app/base/base.component';
 import { FileUploadDialogComponent, FileUploadDialogState } from 'src/app/dialogs/file-upload-dialog/file-upload-dialog.component';
 import { AlertifyService, MessageType, Position } from '../../admin/alertify.service';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../ui/custom-toastr.service';
@@ -19,7 +21,8 @@ export class FileUploadComponent {
     private customToastrService: CustomToastrService,
     private alertifyService: AlertifyService,
     private dialog: MatDialog,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private spinner: NgxSpinnerService
   ) { }
 
   public files: NgxFileDropEntry[];
@@ -39,6 +42,7 @@ export class FileUploadComponent {
       componentType: FileUploadDialogComponent,
       data: FileUploadDialogState.Yes,
       afterClosed: () => {
+        this.spinner.show(SpinnerType.BallAtom)
         this.httpClientService.post({
           controller: this.options.controller,
           action: this.options.action,
@@ -47,6 +51,7 @@ export class FileUploadComponent {
         }, fileData).subscribe(data => {
           const message: string = "Dosyalar Başarıyla Yüklenmiştir.";
 
+          this.spinner.hide(SpinnerType.BallAtom);
           if (this.options.isAdminPage) {
             this.alertifyService.message(message,
               {
@@ -61,9 +66,11 @@ export class FileUploadComponent {
             })
           }
 
+
         }, (errorResponse: HttpErrorResponse) => {
 
           const message: string = "Dosyalar yüklenirken beklenmeyen bir hatayla karşılaşılmıştır.";
+          this.spinner.hide(SpinnerType.BallAtom);
           if (this.options.isAdminPage) {
             this.alertifyService.message(message,
               {
