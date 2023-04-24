@@ -13,10 +13,10 @@
       <td mat-cell *matCellDef="let element"> {{element.subTitle}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="Subtitle2">
+    <!-- <ng-container matColumnDef="Subtitle2">
       <th mat-header-cell *matHeaderCellDef> Subtitle2 </th>
       <td mat-cell *matCellDef="let element"> {{element.subTitle2}} </td>
-    </ng-container>
+    </ng-container> -->
 
     <ng-container matColumnDef="GPA">
       <th mat-header-cell *matHeaderCellDef> GPA </th>
@@ -36,9 +36,13 @@
       <th mat-header-cell *matHeaderCellDef> UpdatedDate </th>
       <td mat-cell *matCellDef="let element"> {{element.updatedDate}} </td>
     </ng-container> -->
+    <ng-container matColumnDef="Photos" >
+      <th mat-header-cell *matHeaderCellDef width="30"></th>
+      <td mat-cell *matCellDef="let element"> <img style="cursor:pointer" (click)="addEducationImages(element.id)" src="../../../../../assets/photo.png" width="25" height="25"/></td>
+    </ng-container>
     <ng-container matColumnDef="Edit" >
       <th mat-header-cell *matHeaderCellDef width="30"></th>
-      <td mat-cell *matCellDef="let element"> <img src="../../../../../assets/edit.png" width="25" height="25"/> </td>
+      <td mat-cell *matCellDef="let element"> <img style="cursor:pointer" src="../../../../../assets/edit.png" width="25" height="25"/> </td>
     </ng-container>
     <ng-container matColumnDef="Delete">
       <th mat-header-cell *matHeaderCellDef width="30"></th>

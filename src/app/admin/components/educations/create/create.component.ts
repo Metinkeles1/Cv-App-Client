@@ -18,13 +18,6 @@ export class CreateComponent extends BaseComponent {
   }
 
   @Output() createdEducation: EventEmitter<Create_Education> = new EventEmitter();
-  @Output() fileUploadOptions: Partial<FileUploadOptions> = {
-    action: "upload",
-    controller: "educations",
-    explanation: "Resimleri sürükleyin veya seçin...",
-    isAdminPage: true,
-    accept: ".png, .jpg, .jpeg, .json"
-  };
 
   create(Title: HTMLInputElement, SubTitle: HTMLInputElement, subTitle2: HTMLInputElement, Gpa: HTMLInputElement, Date: HTMLInputElement) {
     this.showSpinner(SpinnerType.BallAtom);

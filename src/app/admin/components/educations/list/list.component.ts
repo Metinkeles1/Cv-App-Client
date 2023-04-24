@@ -4,7 +4,9 @@ import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/materi
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { list_education } from 'src/app/contracts/list_education';
+import { SelectEducationImageDialogComponent } from 'src/app/dialogs/select-education-image-dialog/select-education-image-dialog.component';
 import { AlertifyService, MessageType, Position } from 'src/app/services/admin/alertify.service';
+import { DialogService } from 'src/app/services/common/dialog.service';
 import { EducationService } from 'src/app/services/common/models/education.service';
 
 
@@ -14,11 +16,14 @@ import { EducationService } from 'src/app/services/common/models/education.servi
   styleUrls: ['./list.component.css']
 })
 export class ListComponent extends BaseComponent implements OnInit {
-  constructor(spinner: NgxSpinnerService, private educationService: EducationService, private alertifyService: AlertifyService) {
+  constructor(spinner: NgxSpinnerService,
+    private educationService: EducationService,
+    private alertifyService: AlertifyService,
+    private dialogservice: DialogService) {
     super(spinner)
   }
 
-  displayedColumns: string[] = ['Title', 'Subtitle', 'Subtitle2', 'GPA', 'Date', 'Edit', 'Delete'];
+  displayedColumns: string[] = ['Title', 'Subtitle', 'GPA', 'Date', 'Photos', 'Edit', 'Delete'];
   dataSource: MatTableDataSource<list_education> = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -32,10 +37,17 @@ export class ListComponent extends BaseComponent implements OnInit {
     this.dataSource = new MatTableDataSource<list_education>(allEducations.educations);
     this.paginator.length = allEducations.totalCount;
   }
-  // delete(id, event) {
-  //   const img: HTMLImageElement = event.srcElement;
-  //   { img.parentElement.parentElement };
-  // }
+
+  addEducationImages(id: string) {
+    debugger;
+    this.dialogservice.openDialog({
+      componentType: SelectEducationImageDialogComponent,
+      data: id,
+      options: {
+        width: "1400px"
+      }
+    })
+  }
 
   async pageChanged() {
     await this.getEducations();
